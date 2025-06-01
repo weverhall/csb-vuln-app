@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <form action="/result" method="get">
+        <div class="input-group">
+          <div class="form-outline">
+            <input type="text" name="query" size="38" placeholder="Search in titles, descriptions and categories..." id="search" class="form-control"/>
+          </div>
+          <button type="submit" class="btn btn-outline-info">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+      <br><p>
+        <a class="btn btn-outline-primary btn-lg" href="/all" role="button">Show all rides</a>
+        <a class="btn btn-outline-primary btn-lg" href="/top" role="button">Show top rides</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
