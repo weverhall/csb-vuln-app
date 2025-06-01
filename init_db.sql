@@ -1,41 +1,48 @@
+PRAGMA foreign_keys = ON;
+
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT UNIQUE,
     password TEXT,
     role INTEGER
 );
 
 CREATE TABLE location_categories (
-	id SERIAL PRIMARY KEY,
-	category TEXT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category TEXT
 );
 
 CREATE TABLE material_categories (
-	id SERIAL PRIMARY KEY,
-	category TEXT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category TEXT
 );
 
 CREATE TABLE drop_categories (
-	id SERIAL PRIMARY KEY,
-	category TEXT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category TEXT
 );
 
 CREATE TABLE rides (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT UNIQUE,
     description TEXT,
-    location_id INTEGER REFERENCES location_categories,
-    material_id INTEGER REFERENCES material_categories,
-    drop_id INTEGER REFERENCES drop_categories
+    location_id INTEGER,
+    material_id INTEGER,
+    drop_id INTEGER,
+    FOREIGN KEY (location_id) REFERENCES location_categories(id),
+    FOREIGN KEY (material_id) REFERENCES material_categories(id),
+    FOREIGN KEY (drop_id) REFERENCES drop_categories(id)
 );
 
 CREATE TABLE reviews (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     content TEXT,
     stars INTEGER,
     sent_at TIMESTAMP,
-    user_id INTEGER REFERENCES users,
-    ride_id INTEGER REFERENCES rides ON DELETE CASCADE
+    user_id INTEGER,
+    ride_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (ride_id) REFERENCES rides(id) ON DELETE CASCADE
 );
 
 INSERT INTO location_categories (category) 

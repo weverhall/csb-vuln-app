@@ -39,17 +39,17 @@ def search(query):
              JOIN location_categories l ON l.id=r.location_id
              JOIN material_categories m ON m.id=r.material_id
              JOIN drop_categories d ON d.id=r.drop_id
-             WHERE r.name ILIKE :query
-             OR r.description ILIKE :query
-             OR l.category ILIKE :query
-             OR m.category ILIKE :query
-             OR d.category ILIKE :query
+             WHERE r.name LIKE :query
+             OR r.description LIKE :query
+             OR l.category LIKE :query
+             OR m.category LIKE :query
+             OR d.category LIKE :query
              ORDER BY r.name"""
     return db.session.execute(sql, {"query":"%"+query+"%"}).fetchall()
 
 def new_review(content, stars, user_id, ride_id):
     sql = """INSERT INTO reviews (content, stars, user_id, ride_id, sent_at)
-             VALUES (:content, :stars, :user_id, :ride_id, NOW()::timestamp(0))"""
+             VALUES (:content, :stars, :user_id, :ride_id, CURRENT_TIMESTAMP)"""
     db.session.execute(sql, {"content": content, "stars": stars, "user_id": user_id, "ride_id": ride_id})
     db.session.commit()
 
