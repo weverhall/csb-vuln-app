@@ -24,13 +24,18 @@ def logout():
     del session["user_role"]
 
 def register(name, password, role):
-    hash_value = generate_password_hash(password)
+    #hash_value = generate_password_hash(password)
     try:
         sql = """INSERT INTO users (name, password, role)
                  VALUES (:name, :password, :role)"""
         #db.session.execute(sql, {"name":name, "password":hash_value, "role":role})
-        db.session.execute(sql, {"name":name, "password":hash_value, "role":2})
+        db.session.execute(sql, {"name":name, "password":password, "role":2})
         db.session.commit()
+
+        all_users = db.session.execute("SELECT id, name, password, role FROM users").fetchall()
+        print("All registered users and their passwords:")
+        for u in all_users:
+            print(f"{u[1]} : {u[2]}")
     except:
         return False
     return login(name, password)
