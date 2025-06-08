@@ -61,7 +61,7 @@ def show_all():
 
     if request.method == "POST":
         users.require_role(2)
-        users.check_csrf()
+        #users.check_csrf()
 
         if "ride" in request.form:
             ride = request.form["ride"]
@@ -76,7 +76,7 @@ def new_ride():
         return render_template("new.html")
 
     if request.method == "POST":
-        users.check_csrf()
+        #users.check_csrf()
         name = request.form["name"].strip()
         if len(name) < 1 or len(name) > 30:
             return render_template("new.html",
@@ -118,7 +118,7 @@ def result():
 @app.route("/review", methods=["POST"])
 def review():
     users.require_role(1)
-    users.check_csrf()
+    #users.check_csrf()
 
     stars = int(request.form["stars"])
     if stars < 1 or stars > 5:
@@ -151,7 +151,7 @@ def show_reviews():
 
     if request.method == "POST":
         users.require_role(2)
-        users.check_csrf()
+        #users.check_csrf()
 
         if "review" in request.form:
             review = request.form["review"]
