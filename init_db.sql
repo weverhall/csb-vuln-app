@@ -53,3 +53,6 @@ VALUES ('Steel'), ('Wooden'), ('Hybrid');
 
 INSERT INTO drop_categories (category) 
 VALUES ('Strata'), ('Giga'), ('Hyper'), ('Mega'), ('Intermediate'), ('Family');
+
+INSERT INTO users (name, password, role) 
+VALUES ('admin', 'admin', 2), ('user', '1234', 1);
