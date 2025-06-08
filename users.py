@@ -15,7 +15,7 @@ def login(name, password):
     session["user_id"] = user[1]
     session["user_name"] = name
     session["user_role"] = user[2]
-    session["csrf_token"] = secrets.token_hex(16)
+    #session["csrf_token"] = secrets.token_hex(16)
     return True
 
 def logout():
@@ -41,6 +41,6 @@ def require_role(role):
     if role > session.get("user_role", 0):
         abort(403)
 
-def check_csrf():
-    if session["csrf_token"] != request.form["csrf_token"]:
-        abort(403)
+#   def check_csrf():
+#       if session["csrf_token"] != request.form["csrf_token"]:
+#           abort(403)

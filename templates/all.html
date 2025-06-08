@@ -24,7 +24,7 @@
         {% if session.user_role == 2 %}
         <p><br>
           <button type="submit" class="btn btn-outline-danger">Remove</button>
-          <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+          <!-- <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}"> -->
           {% endif %}
       </form>
     </div>
