@@ -54,7 +54,8 @@ def new_review(content, stars, user_id, ride_id):
     db.session.commit()
 
 def remove_review(review_id):
-    sql = "DELETE FROM reviews WHERE reviews.id=:review_id"
+    #sql = "DELETE FROM reviews WHERE reviews.id=:review_id"
+    sql = f"DELETE FROM reviews WHERE reviews.id={review_id}"
     db.session.execute(sql, {"review_id":review_id})
     db.session.commit()
 
