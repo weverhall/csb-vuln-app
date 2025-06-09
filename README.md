@@ -11,6 +11,11 @@ Install Python, pip, and SQLite:
 sudo apt update && sudo apt install -y python3 python3-pip sqlite3
 ```
 
+Clone the repository:
+```bash
+git clone https://github.com/weverhall/csb-vuln-app.git
+```
+
 Initialize the database:
 ```bash
 sqlite3 rides.db < init_db.sql
